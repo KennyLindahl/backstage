@@ -277,7 +277,10 @@ describe('GoogleGCSPublish', () => {
   describe('docsRouter', () => {
     let app: express.Express;
     const entity = createMockEntity();
-    const entityRootDir = getEntityRootDir(entity);
+    const entityRootDir = getEntityRootDir({
+      ...entity,
+      kind: entity.kind.toLowerCase(),
+    });
 
     beforeEach(() => {
       app = express().use(publisher.docsRouter());
